@@ -15,7 +15,7 @@ def read(*path):
     rootpath = os.path.dirname(__file__)
     filepath = os.path.join(rootpath, *path)
     with open(filepath)as file_:
-        return file_.read().lstrip
+        return file_.read().lstrip  
     
 def read_requirements(path):
     """return a list of requirements from a text file"""
@@ -36,18 +36,12 @@ setup(
     entry_points={
         "console_scripts":[
             "dundie = dundie.__main__:main"
-        ],
-    },
-    installrequires=[],
-    extras_require={
-        "test": [
-            "pytest"
-        ],
-        "dev": [
-            "ipdb",
-            "ipython",
-            "pudb"
         ]
+    },
+    installrequires=read_requirements("requeriments.txt"),
+    extras_require={
+        "test": read_requirements("requeriments.test.txt"),
+        "dev": read_requirements("requeriments.dev.txt")
     }
 
 )
