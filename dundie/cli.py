@@ -11,18 +11,23 @@ def main():
         type= str,
         help="The subcommand to run",
         choices=("load", "show", "send"),
+        default=help
     
     )
     parser.add_argument(
         "filepath",
         type=str,
-        help="File path to load" ,    
+        help="File path to load", 
+        default=None
         
     )
 
     args = parser.parse_args()
 
-    try:
-        globals()[args.subcommand](args.filepath)
-    except KeyError:
-        print("subcommand is invalid.")
+    if args.subcommand  == "load":
+        result = load(args.filepath)
+        header = ["name","dept", "role", "e-mail"]
+        for person in result:
+            print("-" * 50)
+            for key, value in zip(header, person.split(",")):
+                print(f"{key} -> {value.strip()}")
