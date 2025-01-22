@@ -38,10 +38,10 @@ setup(
             "dundie = dundie.__main__:main"
         ]
     },
-    installrequires=read_requirements("requeriments.txt"),
+    installrequires=read_requirements("requiriments.txt"),
     extras_require={
-        "test": read_requirements("requeriments.test.txt"),
-        "dev": read_requirements("requeriments.dev.txt")
+        "test": read_requirements("requiriments.test.txt"),
+        "dev": read_requirements("requiriments.dev.txt")
     }
 
 )

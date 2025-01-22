@@ -1,7 +1,7 @@
 """Core module of dundie"""
-from dundie.utils.log import get_loger
+from dundie.utils.log import get_logger
 
-log = get_loger()
+log = get_logger()
 
 
 def load(filepath):
@@ -13,4 +13,6 @@ def load(filepath):
             for line in file_:
                 print(line)
     except FileNotFoundError as e:
-        print(f"File not found {e}")
+        #print(f"File not found {e}")
+        log.error(str(e))
+        raise e

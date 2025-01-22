@@ -1,33 +1,28 @@
-import argparse
-from dundie.core import load 
+import pkg_resources
+import rich_click as click
+from rich.table import Table
+from rich.console import Console
 
+from dundie import core 
+
+@click.group
+@click.version_option(pkg_resources.get_distribution("dundie").version)
 def main():
-    parser = argparse.ArgumentParser(
-        description="Dunder Mifflin Rewards CLI",
-        #apilog="Enjoy and use with cautious.",
-    )
-    parser.add_argument(
-        "subcommand",
-        type= str,
-        help="The subcommand to run",
-        choices=("load", "show", "send"),
-        default=help
-    
-    )
-    parser.add_argument(
-        "filepath",
-        type=str,
-        help="File path to load", 
-        default=None
-        
-    )
+    """ Dundie Mifflin Rewards System.
+    This CLI application DM rewards.
+    """
 
-    args = parser.parse_args()
+@main.command()
+@click.Argument("filepath", type=click.Path(exists=True))
+def load(filepath):
+    """Loads the file to the database
+    ## Features
 
-    if args.subcommand  == "load":
-        result = load(args.filepath)
-        header = ["name","dept", "role", "e-mail"]
-        for person in result:
-            print("-" * 50)
-            for key, value in zip(header, person.split(",")):
-                print(f"{key} -> {value.strip()}")
+    -
+    """
+    result = core.load(filepath)
+    header = ["name","dept", "role", "e-mail"]
+    for person in result:
+        print("-" * 50)
+        for key, value in zip(header, person.split(",")):
+            print(f"{key} -> {value.strip()}")

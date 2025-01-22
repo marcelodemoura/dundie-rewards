@@ -2,7 +2,7 @@ import os
 import logging
 from logging import handlers
 
-LOG_LEVEL = os.getenv("LOG_LEVEL", "WARENING").upper()
+LOG_LEVEL = os.getenv("LOG_LEVEL", "WARNING").upper()
 log = logging.getLogger("dundie")
 fmt = logging.Formatter(
         '%(asctime)s %(name)s %(levelName)s '

@@ -1,3 +1,12 @@
 ipython
 ipdb
 pudb
+pytest-watch
+
+#Code Qualy
+flake8
+pyproject-flake8
+black
+
+# Install project as editable
+-e .
